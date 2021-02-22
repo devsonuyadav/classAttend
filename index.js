@@ -12,8 +12,8 @@ app.get('/', (req,res) => {
 })
 
 app.get('/attendClass', (req,res) => {
-  handleRequestForOnlineClass()
-  res.send('Bot is trying to attend your class')
+const  data = await   handleRequestForOnlineClass()
+ res.send(data)
 })
 
 

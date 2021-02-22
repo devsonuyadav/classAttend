@@ -12,7 +12,8 @@ const configure = async () => {
 await puppeteer.use(StealthPlugin())
    browser= await puppeteer.launch({
      headless : true,
-    args: ['--no-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox',],
+  
    
      
    })
@@ -50,7 +51,7 @@ const handleRequestForOnlineClass = async () => {
   const url = await page.url()
   console.log(`Page url is ${url} 🤩`)
    console.log(`All done, check the screenshot. ✨`)
-
+  return "success"
  
 }
 
