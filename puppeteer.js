@@ -12,7 +12,7 @@ const configure = async () => {
 await puppeteer.use(StealthPlugin())
    browser= await puppeteer.launch({
      headless : true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox',],
+    args: ['--no-sandbox'],
   
    
      
@@ -43,15 +43,20 @@ const handleRequestForOnlineClass = async () => {
   // await page.click('._1FvRrPS6')
   // await page.waitForSelector('#zoom-ui-frame > div._1doXW0tM > div > div:nth-child(3) > h3:nth-child(2) > a')
   // await page.click('#zoom-ui-frame > div._1doXW0tM > div > div:nth-child(3) > h3:nth-child(2) > a')
+
+
   await page.waitForTimeout(5000)
+  await page.waitForSelector('#profile > div.mini-layout-body > div > div.content-body > div.admin-content.profile_content_container > div:nth-child(43) > div > div.zm-form-group > div > div.form-control-static > p.form-control-static.fullName')
+  let element = await page.$('#profile > div.mini-layout-body > div > div.content-body > div.admin-content.profile_content_container > div:nth-child(43) > div > div.zm-form-group > div > div.form-control-static > p.form-control-static.fullName')
+  let value = await page.evaluate(el => el.textContent, element)
   await page.screenshot({ path: 'testresult.png', fullPage: true })
   // await browser.close()
+    
+ 
  
 
-  const url = await page.url()
-  console.log(`Page url is ${url} 🤩`)
-   console.log(`All done, check the screenshot. ✨`)
-  return "success"
+  
+  return value
  
 }
 
