@@ -11,7 +11,7 @@ app.get('/', (req,res) => {
   res.send('hey there')
 })
 
-app.get('/attendClass', (req,res) => {
+app.get('/attendClass',async(req,res) => {
 const  data = await   handleRequestForOnlineClass()
  res.send(data)
 })
